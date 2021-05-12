@@ -1,0 +1,19 @@
+{
+  "scriptFile": "__init__.py",
+  "entryPoint": "function_handler",
+  "bindings": [
+    {
+      "name": "message",
+      "type": "serviceBusTrigger",
+      "direction": "in",
+      "topicName": "temp-topic",
+      "subscriptionName": "temp-topic-subscription",
+      "connection": "AzureServiceBusConnectionString"
+    },
+    {
+      "name": "starter",
+      "type": "durableClient",
+      "direction": "in"
+    }
+  ]
+}

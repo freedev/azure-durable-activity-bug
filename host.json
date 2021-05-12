@@ -1,0 +1,42 @@
+{
+  "version": "2.0",
+  "logging": {
+    "applicationInsights": {
+      "samplingSettings": {
+        "isEnabled": true,
+        "excludedTypes": "Request"
+      }
+    },
+    "logLevel": {
+      "Function.send_similarity.User": "Information",
+      "Function.trigger_fa.User": "Information",
+      "Function.orchestrator.User": "Information",
+      "Function" : "Error",
+      "default": "Error"
+    }
+  },
+  "extensionBundle": {
+    "id": "Microsoft.Azure.Functions.ExtensionBundle",
+    "version": "[2.*, 3.0.0)"
+  },
+  "extensions": {
+    "durableTask": {
+      "hubName": "GeneratorHub",
+      "maxConcurrentActivityFunctions": 10,
+      "maxConcurrentOrchestratorFunctions": 10,
+      "useGracefulShutdown": true,
+      "tracing": {
+        "traceInputsAndOutputs": true,
+        "traceReplayEvents": false
+      }
+    },    
+    "serviceBus": {
+      "prefetchCount": 1,
+      "messageHandlerOptions": {
+          "autoComplete": true, 
+          "maxConcurrentCalls": 1,
+          "maxAutoRenewDuration": "00:05:00"
+      }
+    }
+  }
+}
