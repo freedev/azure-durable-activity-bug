@@ -14,8 +14,8 @@ def orchestrator_function(context: df.DurableOrchestrationContext):
         log.info('message received')
         result1 = yield context.call_activity('send_similarity', json.dumps(msg))
         return [result1]
-    except Exception as e:
-        log.error('orchestrator_function', e)
+    except Exception:
+        log.exception('orchestrator_function')
     return []
 
 main = df.Orchestrator.create(orchestrator_function)
